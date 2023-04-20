@@ -1,6 +1,7 @@
 // src/components/Navbar.tsx
 
-import React, { FC, ReactElement } from "react";
+import React, { FC, ReactElement, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   Box,
   Link,
@@ -10,13 +11,22 @@ import {
   MenuItem,
   Toolbar,
   Typography,
+  Button,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { routes } from "../routes";
-import { NavLink } from "react-router-dom";
+// import { routes } from "../routes";
+import { NavLink, useNavigate } from "react-router-dom";
+import { logout } from "../redux/features/login/loginSlice";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const Navbar: FC = (): ReactElement => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { isAuthenticated } = useSelector((state: any) => state.login);
 
   const handleOpenNavMenu = (event: any) => {
     setAnchorElNav(event.currentTarget);
@@ -25,6 +35,29 @@ const Navbar: FC = (): ReactElement => {
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
+
+  const handleLogout = () => {
+      dispatch(logout());
+      navigate("/auth");
+  };
+
+  const routes = [
+    {
+      key: "home",
+      path: "/home",
+      title: "Home",
+    },
+    {
+      key: "about",
+      path: "/about",
+      title: "About",
+    },
+    {
+      key: "contact",
+      path: "/contact",
+      title: "Contact",
+    },
+  ];
 
   return (
     <Box
@@ -89,6 +122,9 @@ const Navbar: FC = (): ReactElement => {
                   </MenuItem>
                 </Link>
               ))}
+              <MenuItem onClick={handleLogout}>
+                <Typography textAlign="center" >LOGOUT</Typography>
+              </MenuItem>
             </Menu>
           </Box>
           <Typography
@@ -122,6 +158,12 @@ const Navbar: FC = (): ReactElement => {
                   {page.title}
                 </Link>
               ))}
+              <MenuItem
+                onClick={handleLogout}
+                sx={{ fontSize: "large", marginLeft: "2rem" }}
+              >
+                <Typography textAlign="center">LOGOUT</Typography>
+              </MenuItem>
             </Box>
           </Box>
         </Toolbar>

@@ -18,15 +18,8 @@ export const routes: Array<IRoute> = [
     {
         key: 'home',
         title: 'Home',
-        path: '/home',
-        enabled: true,
-        component: Home
-    },
-    {
-        key: 'auth',
-        title: 'Auth',
         path: '/',
         enabled: true,
-        component: Auth
+        component: Home
     },
 ];

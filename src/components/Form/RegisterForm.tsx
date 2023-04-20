@@ -16,7 +16,7 @@ const RegisterForm = () => {
         fullname: '',
         email: '',
         password: '',
-        role: 'user'
+        role: 'User'
     }
 
     const validate = (values: any) => {

@@ -1,9 +1,10 @@
 //pages imports
 import Home from '../pages/Home';
-import Auth from '../pages/Auth';
 
 //other imports
 import { FC } from 'react';
+import About from '../pages/About';
+import Contact from '../pages/Contact';
 
 //interface
 interface IRoute {
@@ -21,5 +22,19 @@ export const routes: Array<IRoute> = [
         path: '/',
         enabled: true,
         component: Home
+    },
+    {
+        key:'about',
+        title: 'About',
+        path: '/about',
+        enabled: true,
+        component: About,
+    },
+    {
+        key:"contact",
+        title: 'Contact',
+        path: '/contact',
+        enabled: true,
+        component: Contact,
     },
 ];

@@ -7,6 +7,7 @@ import { store } from "./redux/store";
 import { ToastContainer } from "react-toastify";
 import App from "./App";
 import theme from "./material-ui/theme";
+import Header from "./components/Header";
 import Footer from "./components/Footer";
 
 const root = ReactDOM.createRoot(
@@ -18,6 +19,7 @@ root.render(
       <Provider store={store}>
         {/* <CssBaseline /> Global CSS */}
         <Router>
+          <Header />
           <App />
           <Footer />
           <ToastContainer position="top-right" />

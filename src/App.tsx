@@ -4,6 +4,7 @@ import { Routes, Route, useNavigate, redirect } from "react-router-dom";
 import { routes as appRoutes } from "./routes";
 import { useSelector } from "react-redux";
 import Auth from "./pages/Auth";
+import NotFound404 from "./pages/404";
 
 function App() {
   const navigate = useNavigate();
@@ -34,14 +35,16 @@ function App() {
         flexDirection="column"
       >
         <Routes>
+          {/*404 page route */}
           { !isAuthenticated && <Route path="/auth" element={<Auth />} />}
           {appRoutes.map((route) => (
             <Route
-              key={route.key}
-              element={<route.component />}
-              path={route.path}
+            key={route.key}
+            element={<route.component />}
+            path={route.path}
             />
-          ))}
+            ))}
+            <Route path="*" element={<NotFound404 />} />
         </Routes>
       </Box>
     </>

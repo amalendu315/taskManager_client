@@ -43,7 +43,7 @@ const LoginForm = () => {
           navigate("/");
         })
         .catch((err: any) => {
-          dispatch(loginFail(err.response.data.message));
+          dispatch(loginFail(err.message));
         });
     };
   return (

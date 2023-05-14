@@ -8,7 +8,7 @@ import NotFound404 from "./pages/404";
 
 function App() {
   const navigate = useNavigate();
-  const { isAuthenticated } = useSelector((state: any) => state.login);
+  const { isLoggedin } = useSelector((state: any) => state.login);
 
   const checkToken = () => {
     const token = localStorage.getItem("token");
@@ -21,22 +21,23 @@ function App() {
 
   useEffect(() => {
     checkToken();
-  }, [isAuthenticated]);
+  }, [isLoggedin]);
 
   return (
     <>
-      <CssBaseline /> {/* Global CSS */}
+      {/* <CssBaseline /> Global CSS */}
       <Box
         sx={{
-          width: "100%",
+          width: isLoggedin ? "100vw" : "100%",
           height: "90vh",
+          overflow: "hidden",
         }}
         display="flex"
         flexDirection="column"
       >
         <Routes>
           {/*404 page route */}
-          { !isAuthenticated && <Route path="/auth" element={<Auth />} />}
+          { !isLoggedin && <Route path="/auth" element={<Auth />} />}
           {appRoutes.map((route) => (
             <Route
             key={route.key}

@@ -18,22 +18,22 @@ interface IRoute {
 export const routes: Array<IRoute> = [
     {
         key: 'home',
-        title: 'Home',
+        title: 'Dashboard',
         path: '/',
         enabled: true,
         component: Home
     },
     {
-        key:'about',
-        title: 'About',
-        path: '/about',
+        key:'tasks',
+        title: 'Tasks',
+        path: '/tasks',
         enabled: true,
         component: About,
     },
     {
-        key:"contact",
-        title: 'Contact',
-        path: '/contact',
+        key:"forum",
+        title: 'Forum',
+        path: '/forum',
         enabled: true,
         component: Contact,
     },

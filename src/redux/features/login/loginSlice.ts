@@ -11,9 +11,9 @@ interface LoginState {
 
 const initialState: LoginState = {
   loading: false,
-  token: "",
-  isLoggedIn: false,
-  user: null,
+  token: localStorage.getItem("token") || "",
+  isLoggedIn: localStorage.getItem("token") ? true : false,
+  user: localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user") || "") : null,
 };
 
 export const loginSlice:any = createSlice({
@@ -27,6 +27,7 @@ export const loginSlice:any = createSlice({
             state.loading = false;
             state.token = action.payload.token;
             localStorage.setItem("token", action.payload.token);
+            localStorage.setItem("user", JSON.stringify(action.payload.user));
             state.isLoggedIn = true;
             state.user = action.payload.user;
             toast.success("Logged in Successfully");
